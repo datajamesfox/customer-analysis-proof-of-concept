@@ -43,7 +43,7 @@ colt1, colt2, colt3 = st.columns([1, 20, 1])
 with colt1:
     ''
 with colt2:
-    imageTitle = Image.open('..\\Impact Title.png')
+    imageTitle = Image.open('Impact Title.png')
     st.image(imageTitle)
 with colt3:
     ''
