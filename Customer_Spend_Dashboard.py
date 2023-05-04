@@ -51,7 +51,7 @@ colt1, colt2, colt3 = st.columns([1, 20, 1])
 with colt1:
     ''
 with colt2:
-    imageTitle = Image.open('.\images\Customer Analytics Title.png')
+    imageTitle = Image.open('Customer Analytics Title.png')
     st.image(imageTitle)
 with colt3:
     ''
