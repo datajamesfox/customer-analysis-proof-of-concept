@@ -49,13 +49,13 @@ with colt3:
     ''
 
 if 'age1' not in st.session_state:
-    st.session_state.age1 = {0: "30", 1: "60"}
+    st.session_state.age1 = {0: 30, 1: 60}
 if 'amount1' not in st.session_state:
     st.session_state.amount1 = 20
 if 'cat1' not in st.session_state:
     st.session_state.cat1 = "Food, Groceries, Household"
 if 'age2' not in st.session_state:
-    st.session_state.age2 = {0: "20", 1: "50"}
+    st.session_state.age2 = {0: 20, 1: 50}
 if 'amount2' not in st.session_state:
     st.session_state.amount2 = 70
 if 'cat2' not in st.session_state:
@@ -82,13 +82,15 @@ if st.session_state.authenication == True:
     category_list = categoryList()
 
     def sql1():
+        age_sql_10 = str(st.session_state.age1[0])
+        age_sql_11 = str(st.session_state.age1[1])
         amount1 = str(st.session_state.amount1)
         category1 = str(st.session_state.cat1)
         df = session.sql("select  \
                             count(transaction_reference) as total_transactions, \
                             (select count(*) \
                             from CUSTOMER_DATA.PUBLIC.CUSTOMER_SOCIO_ECO \
-                            where age_min > " + st.session_state.age1[0] + " and age_max < " + st.session_state.age1[1] +
+                            where age_min > " + age_sql_10 + " and age_max < " + age_sql_11 +
                          " and amount < " + amount1 +
                          " and category = '" + category1 + "') as param_transactions, \
                             to_number(param_transactions/total_transactions*100, 38,2) \
@@ -97,13 +99,15 @@ if st.session_state.authenication == True:
         return df.iloc[0][2]
 
     def sql2():
+        age_sql_20 = str(st.session_state.age2[0])
+        age_sql_21 = str(st.session_state.age2[1])
         amount2 = str(st.session_state.amount2)
         category2 = str(st.session_state.cat2)
         df = session.sql("select  \
                             count(transaction_reference) as total_transactions, \
                             (select count(*) \
                             from CUSTOMER_DATA.PUBLIC.CUSTOMER_SOCIO_ECO \
-                            where age_min > " + st.session_state.age2[0] + " and age_max < " + st.session_state.age2[1] +
+                            where age_min > " + age_sql_20 + " and age_max < " + age_sql_21 +
                          " and amount < " + amount2 +
                          " and category = '" + category2 + "') as param_transactions, \
                             to_number(param_transactions/total_transactions*100, 38,2) \
